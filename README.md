@@ -11,5 +11,5 @@ This bot allows you to get your new tasks daily and also get them all right now!
 3. Get your telegram user id from [userinfobot](https://telegram.me/userinfobot).
 4. Put it on `app.py` instead of `"<PUT_YOUR_ADMINS_USER_ID_HERE>"`.
 5. On `entry-point.sh` replace `<USER_ID>` with your telegram user id. Also put your ID and your moodle password on `<ID>` and `<MOODLE_PASSWD>` respectively.
-6. Build the `Dockerfile` and name it as your wish.
-7. Run the image :)
+6. Build the `Dockerfile` and name it as your wish, for example: `docker build -t ariel-moodle-bot .`.
+7. Run the image `docker run --rm -ti ariel-moodle-bot` :)

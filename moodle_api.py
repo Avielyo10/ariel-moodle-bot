@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 options = FirefoxOptions()
 options.add_argument("--headless")
-driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox(options=options, log_path="/home/moodle/geckodriver.log")
 
 
 def login(id, passwd):

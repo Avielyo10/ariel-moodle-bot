@@ -14,9 +14,11 @@ RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckod
 
 RUN useradd -ms /bin/bash moodle
 
-ADD . ./
-RUN chmod a+x entry-point.sh
+ADD . /home/moodle/
+RUN chmod a+x /home/moodle/entry-point.sh && \
+    chown -R moodle:moodle /home/moodle
+
 RUN pip3 install python-telegram-bot redis selenium walrus
 
 USER moodle
-ENTRYPOINT [ "./entry-point.sh" ]
+ENTRYPOINT [ "./home/moodle/entry-point.sh" ]
