@@ -4,11 +4,14 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from pyvirtualdisplay import Display
 
+display = Display(visible=0, size=(800, 600))
+display.start()
 
 options = FirefoxOptions()
 options.add_argument("--headless")
-driver = webdriver.Firefox(options=options, log_path="/home/moodle/geckodriver.log")
+driver = webdriver.Firefox(options=options, log_path="/tmp/geckodriver.log")
 
 
 def login(id, passwd):
@@ -26,6 +29,15 @@ def login(id, passwd):
         elem.send_keys(passwd)
 
         elem = driver.find_element_by_id('loginbtn')
+        elem.click()
+    except WebDriverException:
+        return
+
+
+def logout():
+    try:
+        driver.get('https://moodlearn.ariel.ac.il/login/logout.php')
+        elem = driver.find_element_by_id('submit')
         elem.click()
     except WebDriverException:
         return

@@ -56,7 +56,7 @@ def get_tasks(update, context):
     user_id = get_id(uuid)
     user_passwd = get_passwd(uuid)
     login(user_id, user_passwd)
-    
+
     message = get_upcoming_tasks_as_text()
     if message is None:
         message = "We might have some network issues, please try again later 😊"

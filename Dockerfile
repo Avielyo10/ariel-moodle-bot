@@ -1,7 +1,7 @@
 FROM fedora
 
 RUN sudo dnf -y update && \
-    sudo dnf -y install make wget gcc firefox
+    sudo dnf -y install make wget gcc firefox Xvfb 
 
 RUN wget http://download.redis.io/redis-stable.tar.gz && \
     tar xvzf redis-stable.tar.gz && \
@@ -14,11 +14,10 @@ RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckod
 
 RUN useradd -ms /bin/bash moodle
 
-ADD . /home/moodle/
-RUN chmod a+x /home/moodle/entry-point.sh && \
-    chown -R moodle:moodle /home/moodle
+ADD . /usr/local/bin/
+RUN chmod a+x /usr/local/bin/entry-point.sh 
 
-RUN pip3 install python-telegram-bot redis selenium walrus
+RUN pip3 install python-telegram-bot redis selenium walrus pyvirtualdisplay 
 
 USER moodle
-ENTRYPOINT [ "./home/moodle/entry-point.sh" ]
+ENTRYPOINT [ "./usr/local/bin/entry-point.sh" ]
