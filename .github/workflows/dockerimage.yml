@@ -1,0 +1,18 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build ariel-moodle-bot
+      run: docker build -t ariel-moodle-bot .
+      
+    - name: Run ariel-moodle-bot
+      timeout-minutes: 10
+      run: docker run --rm -ti ariel-moodle-bot
